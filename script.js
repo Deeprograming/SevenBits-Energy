@@ -5,6 +5,12 @@ function scrollToTop() {
     });
 }
 
+// Agregar evento al botón de búsqueda
+document.querySelector('.search-container button').addEventListener('click', function() {
+    const query = document.querySelector('.search-container input').value.toLowerCase();
+    // Aquí implementarás la lógica para buscar palabras clave en tu contenido.
+    console.log('Buscando:', query); // Esto es solo un placeholder para que veas que está funcionando.
+});
 
 
 document.getElementById('enviar-btn').addEventListener('click', function() {
@@ -55,3 +61,61 @@ tiposEnergia.forEach(energia => {
     opcionEnergia.textContent = energia;
     energiaSelect.appendChild(opcionEnergia);
 })
+
+
+//INICIO
+
+// Datos para los gráficos
+const productionData = {
+    labels: ['Hidroeléctrica', 'Eólica', 'Solar', 'Biomasa', 'Nuclear'],
+    datasets: [{
+        label: 'Producción (GWh)',
+        data: [500000, 300000, 200000, 100000, 150000],
+        backgroundColor: ['#3498db', '#2ecc71', '#e67e22', '#9b59b6', '#e74c3c'],
+    }]
+};
+
+const consumptionData = {
+    labels: ['Estados Unidos', 'China', 'India', 'Alemania', 'Francia'],
+    datasets: [{
+        label: 'Consumo (GWh)',
+        data: [400000, 600000, 200000, 100000, 110000],
+        backgroundColor: ['#1abc9c', '#f1c40f', '#e74c3c', '#3498db', '#9b59b6'],
+    }]
+};
+
+// Gráfico de Producción
+const ctxProduction = document.getElementById('energyProductionChart').getContext('2d');
+const energyProductionChart = new Chart(ctxProduction, {
+    type: 'bar',
+    data: productionData,
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'GWh'
+                }
+            }
+        }
+    }
+});
+
+// Gráfico de Consumo
+const ctxConsumption = document.getElementById('energyConsumptionChart').getContext('2d');
+const energyConsumptionChart = new Chart(ctxConsumption, {
+    type: 'bar',
+    data: consumptionData,
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'GWh'
+                }
+            }
+        }
+    }
+});
