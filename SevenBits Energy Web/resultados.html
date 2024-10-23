@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados de Búsqueda</title>
+    <link rel="stylesheet" href="style.css">  
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="7Bits Energy Logo">
+            <h1>SEVENBITS ENERGY</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="inicio.html">Inicio</a></li>
+                <li><a href="energia_renovable.html">Energías renovables</a></li>
+                <li><a href="paises.html">Regiones y países</a></li>
+            </ul>
+        </nav>        
+        <div class="search-container">
+            <input type="text" placeholder="Buscar">
+            <button><img src="search-icon.png" alt="Buscar"></button>
+            <a href="iniciar-sesion.html"><img class="profile-icon" src="profile-icon.png" alt="Perfil"></a>
+        </div>
+    </header>
+    
+    <main id="results">
+        <h2>Resultados de la Búsqueda</h2>
+        <br><br><br>
+        <!-- Los resultados se llenarán dinámicamente -->
+    </main>
+
+    <script>
+        // Función para obtener la consulta de la URL
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Subrayar la palabra buscada en los resultados
+        function highlightText(text, query) {
+            const regex = new RegExp(`(${query})`, 'gi'); // Crear una expresión regular
+            return text.replace(regex, '<mark>$1</mark>'); // Resaltar la coincidencia
+        }
+
+        // Mostrar resultados al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            const query = getQueryParam('query');
+            const content = [
+                "Las energías renovables son una fuente importante para el futuro.",
+                "La energía solar y eólica son dos de las más utilizadas."
+            ];
+            const resultsDiv = document.getElementById('results');
+
+            // Filtrar y mostrar resultados
+            content.forEach(text => {
+                if (text.toLowerCase().includes(query)) {
+                    const highlightedText = highlightText(text, query);
+                    const p = document.createElement('p');
+                    p.innerHTML = highlightedText; // Insertar texto resaltado
+                    resultsDiv.appendChild(p);
+                }
+            });
+
+            if (resultsDiv.children.length === 0) {
+                resultsDiv.innerHTML = '<p>No se encontraron resultados.</p>';
+            }
+        });
+    </script>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <footer>
+        <p>&copy; 2024 SevenBits Energy. Todos los derechos reservados.</p>
+    </footer>
+
+    <div class="scroll-to-top" id="scrollToTop" onclick="scrollToTop()">
+        <div class="arrow">&#8679;</div>
+    </div>
+</body>
+</html>
