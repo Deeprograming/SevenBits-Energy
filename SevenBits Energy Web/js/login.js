@@ -1,3 +1,6 @@
+/*       ***************************** PÁGINA DE INICIO DE SESIÓN *****************************       */
+
+
 const container = document.getElementById('container');
 const registerBtn = document.getElementById('register');
 const loginBtn = document.getElementById('login');
@@ -19,7 +22,7 @@ function iniciarSesion() {
   if (username === 'admin' && password === 'password123') {
     // Aquí deberías hacer una solicitud al servidor para verificar las credenciales
     // Si las credenciales son válidas, redirige a index.html
-    window.location.href = "index.html";
+    window.location.href = "inicio.html"; /* ANTERIORMENTE DECÍA INDEX.HTML */
   } else {
     alert("Credenciales incorrectas");
   }
